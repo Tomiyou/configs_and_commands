@@ -1,0 +1,2 @@
+# Razni konfigi in komande
+

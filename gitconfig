@@ -1,0 +1,38 @@
+[core]
+	pager = delta
+	editor = vim
+	excludesfile = /home/tomaz/.gitignore
+[user]
+	email = tomaz.hribernik@protonmail.com
+	name = Tomaž Hribernik
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[interactive]
+	diffFilter = delta --color-only
+
+[pull]
+	rebase = true
+[merge]
+	conflictstyle = diff3
+[diff]
+	colorMoved = default
+
+[delta]
+	features = side-by-side line-numbers decorations
+	whitespace-error-style = 22 reverse
+	navigate = true    # use n and N to move between diff sections
+	light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+	line-numbers = true
+	side-by-side = true
+[delta "decorations"]
+	commit-decoration-style = bold yellow box ul
+	file-style = bold yellow ul
+	file-decoration-style = none
+
+[init]
+	defaultBranch = master
