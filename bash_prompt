@@ -1,0 +1,19 @@
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
+# Draw bash prompt
+draw_prompt() {
+    local chroot='${debian_chroot:+($debian_chroot)}'
+    local username='\[\033[01;32m\]\u'
+    local hostname=''
+    if [[ $SESSION_TYPE == 'remote/ssh' ]]; then
+        echo "Session is $SESSION_TYPE"
+        hostname='\[\033[01;35m\]@\h'
+    fi
+    local directory='\[\033[01;34m\]\w'
+    local git='\[\033[33m\]$(parse_git_branch)'
+    PS1="$chroot$username$hostname\[\033[00m\]:$directory$git \[\033[00m\]\$ "
+}
+
+draw_prompt
